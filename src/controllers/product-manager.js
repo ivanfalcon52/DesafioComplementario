@@ -83,7 +83,7 @@ class ProductManager {
 
     async deleteProduct(id) {
         try {
-            const deleteProducta = await ProductModel.findByIdAndDelete(id);
+            const deleteProduct = await ProductModel.findByIdAndDelete(id);
 
             if(!deleteProduct) {
                 console.log("producto no encontrado");

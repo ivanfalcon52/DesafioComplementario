@@ -1,3 +1,4 @@
+const ProductModel = require ("../models/product.model.js");
 const express = require("express");
 const router= express.Router();
 const ProductManager= require ("../controllers/product-manager");
@@ -6,15 +7,36 @@ const productManager = new ProductManager();
 //La ruta raíz GET / deberá listar todos los productos de la base. (Incluyendo la limitación ?limit del desafío anterior)
 
 router.get("/", async (req, res) => {
+    
+    
+    
     try{
-        const limit = req.query.limit;
-        const productos = await productManager.getProducts();
-        if(limit){
-            res.json(productos.slice(0,limit));
-        } else {
-            res.json(productos)
-        }
-    } catch (error) {
+        const limit = req.query.limit || 10;
+        const page = req.query.page || 1;
+        const sort = req.query.sort || "";
+        const query = req.query.query || "";
+        
+        const productos = await productManager.getProducts({
+            limit: parseInt(limit),
+            page: parseInt(page),
+            sort,
+            query,
+        });
+
+        res.json({
+            status: 'success',
+            payload: productos,
+            totalPages: productos.totalPages,
+            prevPage: productos.prevPage,
+            nextPage: productos.nextPage,
+            page: productos.page,
+            hasPrevPage: productos.hasPrevPage,
+            hasNextPage: productos.hasNextPage,
+            prevLink: productos.hasPrevPage ? `/api/products?limit=${limit}&page=${productos.prevPage}&sort=${sort}&query=${query}` : null,
+            nextLink: productos.hasNextPage ? `/api/products?limit=${limit}&page=${productos.nextPage}&sort=${sort}&query=${query}` : null,
+        });
+    }
+    catch (error) {
         res.status(500).json({error: "Error interno del servidor"})
     }
 })

@@ -1,6 +1,6 @@
 const express = require ("express");
 const app = express();
-const PUERTO = 3000;
+const PUERTO = 4000;
 const productsRouter = require("./routes/products.router.js");
 const cartsRouter = require("./routes/carts.router.js");
 const viewsRouter = require ("./routes/views.routes.js");
