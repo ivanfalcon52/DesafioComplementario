@@ -1,46 +1,31 @@
-const socket = io(); 
-//Creamos una instancia de socket.io del lado del cliente. 
+const socket = io()
 
-//Vamos a guardar el nombre del usuario: 
-let user; 
+const formNewProduct = document.getElementById("formNewProduct")
+const formDeleteProduct = document.getElementById("formDeleteProduct")
 
-const chatBox = document.getElementById("chatBox"); 
+formNewProduct.addEventListener("submit", (e) => {
+    e.preventDefault()
 
-//Usamos el objeto Swal
-//El método es fire
+    let title = document.getElementById("title").value
+    let description = document.getElementById("description").value
+    let price = parseInt(document.getElementById("price").value)
+    let thumbnail = document.getElementById("thumbnail").value
+    let code = document.getElementById("code").value
+    let stock = document.getElementById("stock").value
+    let category = document.getElementById("category").value
 
-Swal.fire({
-    title: "Identificate",
-    input: "text",
-    text: "Ingrese un usuario para identificarse en el chat",
-    inputValidator: (value) => {
-        return !value && "Necesitas escribir un nombre para continuar"
-    }, 
-    allowOutsideClick: false
-}).then(result => {
-    user = result.value;
-    console.log(user);
-})
-
-
-chatBox.addEventListener("keyup", (event) => {
-    if(event.key === "Enter") {
-        if(chatBox.value.trim().length > 0 ){
-            //trim nos permite sacar los espacios en blanco al principio y al final de un string. 
-            //Si sacando los espacios en blanco, el mensaje tiene mas de 0 caracteres, lo enviamos al servidor.
-            socket.emit("message", {user:user, message: chatBox.value});
-            chatBox.value = "";
-        }
+    const newProduct = {
+        title,
+        description,
+        price,
+        thumbnail,
+        code,
+        stock,
+        category
     }
-})
 
-//Recibimos los mensajes así los mostramos por pantalla: 
+    socket.emit("newProduct", newProduct)
 
-socket.on("message", (data) => {
-    let log = document.getElementById("messagesLogs");
-    let mensajes = "";
-    data.forEach(mensaje => {
-        mensajes = mensajes + `${mensaje.user} dice: ${mensaje.message} <br>`;
-    })
-    log.innerHTML = mensajes;
+    formNewProduct.reset()
+
 })

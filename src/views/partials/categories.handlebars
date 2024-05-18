@@ -1,0 +1,21 @@
+<div class="categories">
+    <a href="/products?query=Playstation">Playstation</a>
+    <a href="/products?query=Hardware">Hardware</a>
+    <a href="/products?query=Pcgamer">Pc gamer</a>
+    <a href="/products?query=Ofertas">Ofertas</a>
+</div>
+<div class="sort">
+    <a href="/products?{{#if query}}query={{query}}&{{/if}}{{#if limit}}limit={{limit}}&{{/if}}sort=price">Lower
+        price</a>
+    <a href="/products?{{#if query}}query={{query}}&{{/if}}{{#if limit}}limit={{limit}}&{{/if}}sort=-price">Higher
+        price</a>
+</div>
+<div class="limit">
+    <h3>Products per page</h3>
+    <div>
+        <a href="/products?{{#if query}}query={{query}}&{{/if}}limit=5">5</a>
+        <a href="/products?{{#if query}}query={{query}}&{{/if}}limit=10">10</a>
+        <a href="/products?{{#if query}}query={{query}}&{{/if}}limit=15">15</a>
+        <a href="/products?{{#if query}}query={{query}}&{{/if}}limit=20">20</a>
+    </div>
+</div>

@@ -1,19 +1,23 @@
 <h2>Registro</h2>
-<form action="/api/sessions" method="POST">
-    <label for="first_name">Nombre: </label>
-    <input type="text" name="first_name" required>
-    <br><br>
-    <label for="last_name">Apellido: </label>
-    <input type="text" name="last_name" required>
-    <br><br>
-    <label for="email">Email: </label>
-    <input type="email"  name="email" required>
-    <br><br>
-    <label for="password"> Password: </label>
-    <input type="password" name="password" required>
-    <br><br>
-    <label for="age">Edad: </label>
-    <input type="number" name="age" required>
-    <br><br>
-    <button type="submit"> Registrar </button>
+
+<form action="/api/user/register" method="POST" class="registerForm">
+    <label for="firstName">First name:</label>
+    <input type="text" name="first_name" id="firstName">
+
+    <label for="lastName">Last name:</label>
+    <input type="text" name="last_name" id="lastName">
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email">
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age">
+
+    <button type="submit">Register</button>
+
+    <p>or</p>
+    <a href="/user/login">Login</a>
 </form>

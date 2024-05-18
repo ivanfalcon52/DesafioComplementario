@@ -1,0 +1,20 @@
+{{#if user}}
+
+<div class="userInfo">
+    <p>Welcome <span id="userName">{{user.name}}</span></p>
+    <p>Email: {{user.email}}</p>
+    <p id="cid">{{user.cartId}}</p>
+    {{#if user.age}}
+    <p>Age: {{user.age}} </p>
+    {{/if}}
+    <a href="/user/profile"><button>Profile</button></a>
+    <a href="/api/user/logout"><button>Logout</button></a>
+</div>
+
+{{else}}
+<div class="login">
+    <a href="/user/login">Login</a>
+    <a href="/user/register">Register</a>
+</div>
+
+{{/if}}

@@ -1,5 +1,12 @@
-<h2>Mi Perfil</h2>
-<p>Bienvenido!, {{usuario.first_name}} - {{usuario.last_name}} </p>
-<p>Email: {{user.email}} </p>
-<p>Edad: {{user.age}} </p>
-<a href="/api/sessions/logout">Cerrar Sesión</a>
+{{> navBar}}
+
+<h2>Perfil</h2>
+
+<div class="userProfile">
+    <h2>Bienvenido {{user.name}}</h2>
+    <p>Email: {{user.email}}</p>
+    {{#if user.age}}
+    <p>Age: {{user.age}}</p>
+    {{/if}}
+    <a href="/api/user/logout"><button>Logout</button></a>
+</div>

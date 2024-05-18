@@ -1,13 +1,21 @@
-<h1>Express Handlebars funcionando! </h1>
+{{> navBar}}
 
-<div>
-    <input type="text" id="chatBox">
+<h1>Chat Funcionando!</h1>
+
+<div class="messages" id="messagesLogs">
+    {{#each messages}}
+    <div>
+        <h4>{{user}}:</h4>
+        <p>{{message}}</p>
+    </div>
+    {{/each}}
 </div>
 
-<div>
-    <p id="messagesLogs"></p>
+<div class="inputMessage">
+    <input type="text" id="chatBox" placeholder="Write a message">
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.socket.io/4.7.3/socket.io.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/chat.js"></script>
